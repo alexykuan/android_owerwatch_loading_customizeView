@@ -5,8 +5,10 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Path;
+import android.graphics.PathDashPathEffect;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -19,7 +21,7 @@ import ykuan.projectnews.R;
 
 
 public class OWchildView extends ImageView {
-    private static int DEFAULT_SIDE_LENGTH = 40 ;
+    private static int DEFAULT_SIDE_LENGTH = 80 ;
     private int SIDE_LENGTH;
     private Paint mPaint;
     public OWchildView(Context context) {
@@ -81,6 +83,8 @@ public class OWchildView extends ImageView {
         matrix.setScale(scaleWidth,scaleHeight);
         mBitmapShader.setLocalMatrix(matrix);
         mPaint =new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setStrokeWidth(10f);
         mPaint.setShader(mBitmapShader);
     }
     public Bitmap drawableToBitmap(Drawable drawable){

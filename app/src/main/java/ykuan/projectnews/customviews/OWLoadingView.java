@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import ykuan.projectnews.R;
 
 public class OWLoadingView extends ViewGroup {
+    private static final int PADDING = 3 ;
     private int [] left_p =new int[7];
     private int [] top_p =new int[7];
     private int [] right_p =new int[7];
@@ -52,13 +53,14 @@ public class OWLoadingView extends ViewGroup {
 //        初始化7个view坐标
         int size1p5 = (int) Math.ceil(1.5*side_length);
         int sizeqrt = (int) Math.ceil(Math.sqrt(3)*side_length/2);
-        left_p = new int[]{size1p5,3*side_length,3*side_length,
-                size1p5,0,0,size1p5};
-        top_p = new int[]{0,sizeqrt,3*sizeqrt,4*sizeqrt,3*sizeqrt,sizeqrt,2*sizeqrt};
-        right_p =new int[]{2*side_length+size1p5,5*side_length,5*side_length,
-                2*side_length+size1p5,2*side_length,2*side_length,2*side_length+size1p5};
-        bottom_p= new int[]{2*sizeqrt,3*sizeqrt,5*sizeqrt,6*sizeqrt,5*sizeqrt,
-                3*sizeqrt,4*sizeqrt};
+        left_p = new int[]{size1p5+PADDING,2*PADDING+3*side_length,2*PADDING+3*side_length,
+                PADDING+size1p5,0,0,PADDING+size1p5};
+        top_p = new int[]{0,PADDING+sizeqrt,2*PADDING+3*sizeqrt,
+                2*PADDING+4*sizeqrt,PADDING*2+3*sizeqrt,PADDING+sizeqrt,PADDING+2*sizeqrt};
+        right_p =new int[]{2*side_length+size1p5+PADDING,2*PADDING+5*side_length,2*PADDING+5*side_length,
+                PADDING+2*side_length+size1p5,2*side_length,2*side_length,PADDING+2*side_length+size1p5};
+        bottom_p= new int[]{2*sizeqrt,PADDING+3*sizeqrt,2*PADDING+5*sizeqrt,2*PADDING+6*sizeqrt,2*PADDING+5*sizeqrt,
+                PADDING+3*sizeqrt,PADDING+4*sizeqrt};
         for(int i= 0 ;i<getChildCount();i++){
             views[i] =getChildAt(i);
             measureChild(views[i],widthMeasureSpec,heightMeasureSpec);
@@ -67,8 +69,8 @@ public class OWLoadingView extends ViewGroup {
             views[i].setTag(info);
         }
 
-        setMeasuredDimension(5*side_length,
-                (int) Math.ceil(Math.sqrt(3)*3*side_length));
+        setMeasuredDimension(5*side_length+2*PADDING,
+                (int) Math.ceil(Math.sqrt(3)*3*side_length)+2*PADDING);
     }
 
     @Override
